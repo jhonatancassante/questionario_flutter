@@ -32,7 +32,6 @@ class Resultado extends StatelessWidget {
         TextButton(
           onPressed: quandoReiniciar,
           style: const ButtonStyle(
-            foregroundColor: MaterialStatePropertyAll<Color>(Colors.blue),
             textStyle: MaterialStatePropertyAll<TextStyle>(TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,

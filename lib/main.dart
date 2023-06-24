@@ -7,13 +7,14 @@ main() => runApp(const PerguntaApp());
 class PerguntaAppState extends State<PerguntaApp> {
   var _perguntaSelecionada = 0;
   var _pontuacaoTotal = 0;
+  var _temaEscuro = false;
   final List<Map<String, Object>> _perguntas = const [
     {
       'texto': 'Qual é a sua cor favorita?',
       'respostas': [
-        {'texto': 'Preto', 'pontuacao': 10},
+        {'texto': 'Preto', 'pontuacao': 3},
         {'texto': 'Vermelho', 'pontuacao': 5},
-        {'texto': 'Verde', 'pontuacao': 3},
+        {'texto': 'Verde', 'pontuacao': 10},
         {'texto': 'Branco', 'pontuacao': 1},
       ],
     },
@@ -29,10 +30,10 @@ class PerguntaAppState extends State<PerguntaApp> {
     {
       'texto': 'Qual é o seu instrutor favorito?',
       'respostas': [
-        {'texto': 'Maria', 'pontuacao': 10},
-        {'texto': 'João', 'pontuacao': 5},
+        {'texto': 'Maria', 'pontuacao': 5},
+        {'texto': 'João', 'pontuacao': 1},
         {'texto': 'Leo', 'pontuacao': 3},
-        {'texto': 'Pedro', 'pontuacao': 1},
+        {'texto': 'Pedro', 'pontuacao': 10},
       ],
     },
   ];
@@ -57,12 +58,39 @@ class PerguntaAppState extends State<PerguntaApp> {
     return _perguntaSelecionada < _perguntas.length;
   }
 
+  void _mudarTema() {
+    _temaEscuro
+        ? setState(() {
+            _temaEscuro = false;
+          })
+        : setState(() {
+            _temaEscuro = true;
+          });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: _temaEscuro
+          ? ThemeData(
+              brightness: Brightness.dark,
+              primaryColor: Colors.purple,
+              primarySwatch: Colors.purple,
+            )
+          : ThemeData(
+              brightness: Brightness.light,
+              primaryColor: Colors.deepPurple,
+              primarySwatch: Colors.deepPurple,
+            ),
       home: Scaffold(
         appBar: AppBar(
           title: const Text("Perguntas"),
+          actions: [
+            IconButton(
+              onPressed: _mudarTema,
+              icon: Icon(_temaEscuro ? Icons.nightlight_round : Icons.wb_sunny),
+            )
+          ],
         ),
         body: temPerguntaSelecionada
             ? Questionario(

@@ -14,8 +14,6 @@ class Resposta extends StatelessWidget {
       child: ElevatedButton(
         onPressed: naSelecao,
         style: const ButtonStyle(
-          backgroundColor: MaterialStatePropertyAll<Color>(Colors.blue),
-          foregroundColor: MaterialStatePropertyAll<Color>(Colors.white),
           textStyle: MaterialStatePropertyAll<TextStyle>(TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,
